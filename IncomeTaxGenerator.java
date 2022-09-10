@@ -1,8 +1,8 @@
 
-package javaapplication2;
+package incometaxgenerator;
 import java.util.*;
 
-public class JavaApplication2 {
+public class incometaxgenerator {
 
    
     public static void main(String[] args) {
