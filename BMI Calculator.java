@@ -1,8 +1,8 @@
 
-package javaapplication1;
+package bmicalculator;
 import java.util.*;
 
-public class JavaApplication1 {
+public class bmicalculator {
 
     
     public static void main(String[] args) {
