@@ -1,0 +1,103 @@
+//EXCEPTION HANDLINGGGGG
+//ROW CHECK
+//COLUMN CHECK
+//DIAGONAL CHECKKKK
+//ASSSSSTHETICSSS
+//INTRO WELCOME TO THE GAME SHIT
+//END THE GAME
+// USER NAME SHIT CAN BE DONE, USE CHAR@0, IF CHAR SAME THEM USE THE SECOND CHARACTER OF USER2 OR SOMETHING
+
+
+
+
+
+
+
+import java.util.*;
+public class connectFour {
+    public static void main(String[] args) {
+        int[][] board = new int[6][7];          //the actual game board
+        int[] remColumn = new int[7];           //represents the 7 columns
+        int column;
+        for (int i = 0; i < 42; i++) {
+            column = userInput(i);
+            if(!allowFillBoard(remColumn, column)) {
+                do {
+                    System.out.println("The column you have entered is already full");
+                    column = userInput(i);
+                } while (allowFillBoard(remColumn, column));
+            }
+            fillBoard(board, remColumn, column, i);
+            printBoard(board);
+            if (rowCheck(board)) {
+                System.out.println("You winn");
+                System.exit(0);
+            }
+        }
+    }
+    
+    public static int userInput(int i){
+        Scanner input = new Scanner(System.in);
+        int column = -1;
+        if (i % 2 == 0) {
+            System.out.println("User 1, enter next move");
+        }
+        else {
+            System.out.println("User 2, enter next move");
+        }
+        column = input.nextInt();
+        return column-1;
+    }      //this takes input from the users according to their turn
+    
+    public static void fillBoard (int[][] board, int[] remColumn, int column, int i) {
+        int row = 5 - remColumn[column];
+        if (i % 2 == 0)
+            board[row][column] = 1;
+        else  board[row][column] = 2;
+        remColumn[column]++;
+    }   //this will fill the integer board w 1 || 2
+    
+    public static boolean allowFillBoard (int[] remColumn, int column) {
+        return remColumn[column] != 6;
+    }
+    
+    public static void printBoard (int[][] board){
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 7; j++) {
+                System.out.print("| ");
+                if (board[i][j] == 1)
+                    System.out.print("1 ");
+                else if (board[i][j] == 2)
+                    System.out.print("2 ");
+                else System.out.print("  ");
+            }
+            System.out.println();
+        }
+    }
+    
+    public static boolean rowCheck (int[][] board) {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 7; j++) {
+                if (board[i][j] == 1){
+                    if(board[i][j+1] == 1){
+                        if(board[i][j+2] == 1) {
+                            if (board[i][j+2] == 1){
+                                return true;
+                            }
+                        }
+                    }
+                }
+                if (board[i][j] == 2){
+                    if(board[i][j+1] == 2){
+                        if(board[i][j+2] == 2) {
+                            if (board[i][j+2] == 2){
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+}
